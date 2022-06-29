@@ -2,17 +2,16 @@
 
 <template>
   <div class="corpo">
-    <h1 class = "centralizado">{{titulo}}</h1>
+    <h1 class = "centralizado">{{ titulo }}</h1>
 
   <ul class="lista-foto">
     <!--v-for realiza a um loop da variavell no script-->
-    <li v-for="foto of fotos" class="lista-foto-item">
-      <meu-painel>
-        <img class="imagem-responsiva" :src="foto.url" :alt="foto.descricao">
-
+    <li class="lista-foto-item" v-for="foto in fotos" >
+      <meu-painel :titulo ="foto.titulo">
+        <img class="imagem-responsiva" :src="foto.url" :alt="foto.titulo">
       </meu-painel>
-    </li>
 
+    </li>
   </ul>
   </div>
 
@@ -20,7 +19,14 @@
 </template>
 
 <script>
+import Painel from "./components/shared/painel/painel" ; // importar o arquivo que deseja
+
 export default {
+  components: { // aplelido do componente importado
+
+    'meu-painel': Painel
+  },
+
   data(){
     return{
       titulo : "Alura Fotos",

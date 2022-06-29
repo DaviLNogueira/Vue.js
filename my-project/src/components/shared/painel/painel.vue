@@ -1,8 +1,8 @@
 <template>
 
         <div class="painel">
-          <h2 class="painel-titulo"></h2>
-          <div class="painel-conteudo"></div>
+          <h2 class="painel-titulo">{{ titulo }}</h2>
+          <slot class="painel-conteudo"></slot>
         </div>
 
 
@@ -10,10 +10,11 @@
 
 <script>
 export default {
+  props : ['titulo']
 }
 </script>
 
-<style>
+<style scoped> /*aplicações de outros componetes não interferem um no outro se aplicamos o atributo scoped*/
 
 
 /* estilo do painel */
@@ -37,5 +38,9 @@ export default {
   margin: 0 0 15px 0;
   padding: 10px;
   text-transform: uppercase;
+}
+
+.painel *{
+  box-shadow: 5px 5px 5px;
 }
 </style>

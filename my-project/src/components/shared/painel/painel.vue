@@ -1,8 +1,17 @@
 <template>
 
         <div class="painel">
-          <h2 class="painel-titulo">{{ titulo }}</h2>
-          <slot class="painel-conteudo"></slot>
+          <h2 class="painel-titulo" @dblclick="visivel= !visivel">{{ titulo }}</h2>
+          <!--
+          dbcliclk == doblo click
+          @ => v-on
+          -->
+          <transition name = "painel-fade">
+            <div v-show="visivel" >
+              <slot class="painel-conteudo" ></slot>
+            </div>
+          </transition>
+
         </div>
 
 
@@ -10,7 +19,14 @@
 
 <script>
 export default {
-  props : ['titulo']
+  props : ['titulo'],
+
+  data(){
+
+    return{
+      visivel: true,
+    }
+  }
 }
 </script>
 
@@ -43,4 +59,15 @@ export default {
 .painel *{
   box-shadow: 5px 5px 5px;
 }
+
+.painel-fade-enter, .painel-fade-leave-active{ /*São classes que automaticamente são criadas pelo transition tag */
+  opacity: 0;
+}
+
+.painel-fade-enter-active, .painel-fade-leave-active{
+  transition: opacity .3s; /*Tempo da opacidade*/
+}
+
+
 </style>
+

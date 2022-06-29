@@ -3,10 +3,12 @@
 <template>
   <div class="corpo">
     <h1 class = "centralizado">{{ titulo }}</h1>
+    <input type="search" class="filtro" placeholder="Filtre por pasrte do título" v-on:input="filtro = $event.target.value">
 
+    <!--v-on será responsável por excutar o input-->
   <ul class="lista-foto">
     <!--v-for realiza a um loop da variavell no script-->
-    <li class="lista-foto-item" v-for="foto in fotos" >
+    <li class="lista-foto-item" v-for="foto of fotosComFiltro ">
       <meu-painel :titulo ="foto.titulo">
         <img class="imagem-responsiva" :src="foto.url" :alt="foto.titulo">
       </meu-painel>
@@ -30,11 +32,25 @@ export default {
   data(){
     return{
       titulo : "Alura Fotos",
-      fotos:[
-
-      ]
+      fotos:[],
+      filtro : ''
     }
   },
+
+  computed :{
+    fotosComFiltro(){ // método que pode acessar como uma propriedade
+      if(this.filtro){
+        let exp = new RegExp(this.filtro.trim(),'i'); // Cria uma expressão regular, trim() retira espaços e 'i' = quanto mausculas e minusculas
+        return  this.fotos.filter(foto => exp.test(foto.titulo));
+        //filtrar
+
+      }
+      else{
+        return this.fotos
+      }
+    }
+},
+
   //Lifecycle Hooks
   created() { // usados na inicialização
     let promisse = this.$http.get('http://localhost:3000/v1/fotos')// usado para capturar a requisão
@@ -68,7 +84,8 @@ export default {
   width: 100%;
 }
 
-/* estilo do painel */
-
-
+.filtro{
+  display: block;
+  width: 100%;
+}
 </style>

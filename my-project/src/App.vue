@@ -1,10 +1,17 @@
-<template>
-  <div>
-    <h1>{{titulo}}</h1>
 
-  <ul>
+
+<template>
+  <div class="corpo">
+    <h1 class = "centralizado">{{titulo}}</h1>
+
+  <ul class="lista-foto">
     <!--v-for realiza a um loop da variavell no script-->
-    <li v-for="foto of fotos"><img :src="foto.url" :alt="foto.descricao"></li>
+    <li v-for="foto of fotos" class="lista-foto-item">
+      <meu-painel>
+        <img class="imagem-responsiva" :src="foto.url" :alt="foto.descricao">
+
+      </meu-painel>
+    </li>
 
   </ul>
   </div>
@@ -32,5 +39,30 @@ export default {
 </script>
 
 <style>
+
+.corpo {
+  font-family: Heltica, sans-serif;
+  width: 96%;
+  margin: 0 auto;
+}
+
+.centralizado{
+  text-align: center;
+}
+
+.lista-foto{
+  list-style: none;
+}
+
+.lista-foto .lista-foto-item{
+  display: inline-block;
+}
+
+.imagem-responsiva{
+  width: 100%;
+}
+
+/* estilo do painel */
+
 
 </style>

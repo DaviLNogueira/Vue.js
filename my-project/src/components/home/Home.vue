@@ -11,7 +11,8 @@
       <li class="lista-foto-item" v-for="foto of fotosComFiltro ">
         <meu-painel :titulo ="foto.titulo">
           <imagem-responsiva :url="foto.url" :titulo="foto.titulo" ></imagem-responsiva>
-          <meu-botao tipo="button" rotulo="REMOVER">
+          <meu-botao tipo="button" rotulo="REMOVER" @botaoAtivado = "remove(foto)"
+            :confirmacao = "true" estilo="perigo" >
 
           </meu-botao>
         </meu-painel>
@@ -58,6 +59,15 @@ export default {
       }
     }
   },
+
+  methods :{
+    remove(foto){
+      if(confirm('Confirma essa operação?')){
+        alert("Remover a foto "+ foto.titulo);
+      }
+
+    }
+},
 
   //Lifecycle Hooks
   created() { // usados na inicialização

@@ -11,6 +11,9 @@
       <li class="lista-foto-item" v-for="foto of fotosComFiltro ">
         <meu-painel :titulo ="foto.titulo">
           <imagem-responsiva :url="foto.url" :titulo="foto.titulo" ></imagem-responsiva>
+          <meu-botao tipo="button" rotulo="REMOVER">
+
+          </meu-botao>
         </meu-painel>
 
       </li>
@@ -21,14 +24,17 @@
 </template>
 
 <script>
+
 import Painel from "../shared/painel/painel" ; // importar o arquivo que deseja
 import imagemResponsiva from "../shared/imagem-responsiva/imagemResponsiva";
+import Botao from "../botao/Botao";
 
 export default {
   components: { // aplelido do componente importado
 
     'meu-painel': Painel,
     'imagem-responsiva' : imagemResponsiva,
+    'meu-botao' : Botao
   },
 
   data(){

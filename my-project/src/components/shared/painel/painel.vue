@@ -56,6 +56,11 @@ export default {
   text-transform: uppercase;
 }
 
+
+.painel-conteudo {
+  overflow: hidden;
+}
+
 .painel *{
   box-shadow: 5px 5px 5px;
 }
@@ -67,6 +72,7 @@ export default {
 .painel-fade-enter-active, .painel-fade-leave-active{
   transition: opacity .3s; /*Tempo da opacidade*/
 }
+
 
 
 </style>

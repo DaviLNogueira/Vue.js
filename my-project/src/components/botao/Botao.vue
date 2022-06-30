@@ -3,8 +3,20 @@
 </template>
 
 <script>
+
 export default {
-  props : ['titulo' ,'rotulo','confirmacao','estilo'],
+  props : {
+    tipo: {
+      required : true,
+      type:String
+    },
+    rotulo :{
+      required: true,
+      type: String
+    },
+    confirmacao: Boolean,
+    estilo: String,
+  },
   methods :{
     disparaAcao(){
       if(this.confirmacao){

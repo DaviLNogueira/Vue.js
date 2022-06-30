@@ -3,6 +3,8 @@ import App from './App.vue'
 import VueResource from 'vue-resource'; //importar do pacote baixado
 import VueRouter from "vue-router"; // gerenciamento de rotas
 import  {routes} from "./routes";
+import  '../src/components/directives/Transform';  // carregado
+
 //artefatos especializados na realização de requisições assíncronas ao mesmo tempo em que se integra com o ecossistema do Vue.
 Vue.use(VueResource); //usar o pacote
 Vue.use(VueRouter);

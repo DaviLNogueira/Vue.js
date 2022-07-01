@@ -3,6 +3,7 @@
 <template>
   <div >
     <h1 class = "centralizado">{{ titulo }}</h1>
+    <p v-show="mensagem" class="centralizado">{{ mensagem }} </p>
     <input type="search" class="filtro" placeholder="Filtre por título" v-on:input="filtro = $event.target.value">
 
     <!--v-on será responsável por excutar o input-->
@@ -29,6 +30,7 @@
 import Painel from "../shared/painel/painel" ; // importar o arquivo que deseja
 import imagemResponsiva from "../shared/imagem-responsiva/imagemResponsiva";
 import Botao from "../botao/Botao";
+import FotoService from "../../domain/foto/FotoService";
 
 export default {
   components: { // aplelido do componente importado
@@ -42,7 +44,8 @@ export default {
     return{
       titulo : "Alura Fotos",
       fotos:[],
-      filtro : ''
+      filtro : '' ,
+      mensagem : ''
     }
   },
 
@@ -61,19 +64,32 @@ export default {
   },
 
   methods :{
-    remove(foto){
-      if(confirm('Confirma essa operação?')){
-        alert("Remover a foto "+ foto.titulo);
-      }
-
+    remove(foto) {
+      this.service
+        .apaga(foto._id)
+        .then(
+          () => {
+            let indice = this.fotos.indexOf(foto);
+            this.fotos.splice(indice, 1);
+            this.mensagem = 'Foto removida com sucesso'
+          },
+          err => {
+            this.mensagem = 'Não foi possível remover a foto';
+            console.log(err);
+          }
+        )
     }
+
 },
 
   //Lifecycle Hooks
   created() { // usados na inicialização
-    let promisse = this.$http.get('http://localhost:3000/v1/fotos')// usado para capturar a requisão
-      .then(res => res.json())
-      .then(fotos => this.fotos =fotos, error => console.log(error))
+
+    this.service = new FotoService(this.$resource);
+    this.service
+      .lista()
+      .then(fotos => this.fotos =fotos, error => console.log(error));
+
   }
 }
 </script>

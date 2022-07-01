@@ -7,6 +7,7 @@ import  '../src/components/directives/Transform';  // carregado
 
 //artefatos especializados na realização de requisições assíncronas ao mesmo tempo em que se integra com o ecossistema do Vue.
 Vue.use(VueResource); //usar o pacote
+Vue.http.options.root = 'http://localhost:3000'
 Vue.use(VueRouter);
 
 const router = new VueRouter({

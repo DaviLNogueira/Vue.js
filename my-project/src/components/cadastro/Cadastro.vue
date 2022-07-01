@@ -1,6 +1,6 @@
 <!-- alurapic/src/components/cadastro/Cadastro.vue -->
 
-
+<script src="https://unpkg.com/vee-validate"></script>
 
 <template >
 
@@ -13,13 +13,13 @@
 
     <form @submit.prevent ="grava()"> <!--prevent cancelada o método padrão-->
       <div class="controle">
-        <label for="titulo">TÍTULO</label>
-        <input id="titulo" autocomplete="off" v-model="foto.titulo">
+        <label for="titulo" >TÍTULO</label>
+        <input id="titulo" autocomplete="off" v-model="foto.titulo" required>
       </div>
 
       <div class="controle">
         <label for="url">URL</label>
-        <input id="url" autocomplete="off"  v-model.lazy="foto.url"><!--Posterga a requisição até sair do objeto -->
+        <input id="url" autocomplete="off"  v-model.lazy="foto.url" required><!--Posterga a requisição até sair do objeto -->
         <imagem-responsiva v-show= "foto.url" :url="foto.url" :titulo ="foto.titulo"/>
       </div>
 

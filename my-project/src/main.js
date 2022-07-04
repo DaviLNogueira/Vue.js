@@ -1,9 +1,21 @@
+// alurapic/src/main.js
+
 import Vue from 'vue'
 import App from './App.vue'
-import VueResource from 'vue-resource'; //importar do pacote baixado
-import VueRouter from "vue-router"; // gerenciamento de rotas
-import  {routes} from "./routes";
-import  '../src/components/directives/Transform';  // carregado
+import VueResource from 'vue-resource';
+import VueRouter from 'vue-router';
+import { routes } from './routes';
+import './directives/Transform';
+import  './assets/css.js.css'
+import './assets/js/teste.js'
+
+import 'jquery/dist/jquery.js'
+import 'bootstrap/dist/css/bootstrap.css';
+import  'bootstrap/dist/js/bootstrap.js'
+
+
+
+// código posterior omitido
 
 //artefatos especializados na realização de requisições assíncronas ao mesmo tempo em que se integra com o ecossistema do Vue.
 Vue.use(VueResource); //usar o pacote

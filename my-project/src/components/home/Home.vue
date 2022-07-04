@@ -2,6 +2,7 @@
 
 <template>
   <div >
+    <img src="../../../static/imagem-em-lente-convexa.webp" alt="">
     <h1 class = "centralizado">{{ titulo }}</h1>
     <p v-show="mensagem" class="centralizado">{{ mensagem }} </p>
     <input type="search" class="filtro" placeholder="Filtre por título" v-on:input="filtro = $event.target.value">
